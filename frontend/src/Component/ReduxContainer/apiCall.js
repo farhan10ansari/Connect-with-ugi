@@ -32,5 +32,6 @@ export const signup = async(dispatch , user)=>{
           } catch (error) {
                     dispatch(loginFailure());
                     console.log(error)
+                    alert("Error in Signup");
           }
 }
