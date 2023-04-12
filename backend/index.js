@@ -118,10 +118,10 @@ app.post("/verifyUser",async (req,res)=>{
         res.send("Not Logged In");
         return;
     }
-    console.log(req.body);
+    // console.log(req.body);
     try{
         let result=await User.updateOne({_id:req.body.id},{verifed:true});
-        console.log(result);
+        // console.log(result);
         if(result.acknowledged)
         {
             res.send({res:"success"});
@@ -137,7 +137,8 @@ app.post("/verifyUser",async (req,res)=>{
     }
 })
 
-app.post("/deleteUser",async (req,res)=>{
+
+app.post("/unverifyUser",async (req,res)=>{
     if(!req.session.is_logged_in)
     {
         res.send("Not Logged In");
@@ -146,6 +147,34 @@ app.post("/deleteUser",async (req,res)=>{
     // console.log(req.body);
     try{
         let result=await User.updateOne({_id:req.body.id},{verifed:false});
+
+        let res1=await Post.deleteMany({user:req.body.id})
+        // console.log(result);
+        if(result.acknowledged)
+        {
+            res.send({res:"success"});
+        }
+        else{
+            res.send({res:"error"});
+        }
+    }
+    catch(error)
+    {
+        console.log(error)
+        res.send({res:error.message});
+    }
+})
+
+
+app.post("/deleteUser",async (req,res)=>{
+    if(!req.session.is_logged_in)
+    {
+        res.send("Not Logged In");
+        return;
+    }
+    // console.log(req.body);
+    try{
+        let result=await User.deleteOne({_id:req.body.id});
 
         let res1=await Post.deleteMany({user:req.body.id})
         // console.log(result);
