@@ -18,6 +18,11 @@ import Chat from './Pages/Chat/Chat';
 function App() {
   const userDetails = useSelector((state)=>state.user);
   let user = userDetails?.user
+  console.log(userDetails?.user?.other?.verifed)
+  if(userDetails?.user?.other?.verifed === false){
+  alert("Please Ask the Admin to verify your email")
+  }
+  
   return (
     <div className="App">
     <BrowserRouter>

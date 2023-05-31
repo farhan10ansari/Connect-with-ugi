@@ -31,7 +31,10 @@ export default function Navbar() {
                     </div>
           </div>
           <div className='IconsContainer'>
+                    <a href="https://drive.google.com/drive/folders/1uo5yWioZZAZ-3o4OY5GpDbJt5MHYr2zl?usp=sharing">
                     <img src={`${Notifications}`} className="Icons" alt="" />
+                    </a>
+                    
 
                     <Link to={`/chat`}>
                     <img src={`${Message}`} className="Icons" alt="" />
